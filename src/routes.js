@@ -8,6 +8,7 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import _ from 'lodash'
 
 import { ShowPhotos } from './views'
 import { Header } from './components'
@@ -20,7 +21,8 @@ const getPhotos = async (setData) => {
   try {
     const { data } = await axios.get('https://jsonplaceholder.typicode.com/albums/1/photos')
 
-    setData(data)
+    const dataSliced = _.slice(data, 0, 12)
+    setData(dataSliced)
   } catch (error) {
     setData([])
   }
